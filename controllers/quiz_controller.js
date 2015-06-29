@@ -14,3 +14,10 @@ exports.answer = function(req, res) {
 		res.render('quizes/answer', {respuesta: 'Incorrecto'});	
 	}
 };
+
+//GET /author
+exports.author = function(req, res) {
+	res.render('quizes/author', {autor: 'Salvador Duarte Perez', 
+								 autor_imagen: '/images/autor.jpg'}
+	);
+};
