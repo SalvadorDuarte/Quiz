@@ -1,8 +1,8 @@
 # Ficheros y directorios que no se suben a GitHub
 node_modules
 npm-debug.log
-
-
+quiz.sqlite
+.env
 
 # Windows image file caches
 Thumbs.db
