@@ -8,6 +8,9 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'Quiz' });
 });
 
+//Autoload de comandos con :quizId
+router.param('quizId', quizController.load); //autoload :quizId
+
 //Definición de rutas de /quizes
 //router.get('/quizes/question', quizController.question); //OLD: Método antiguo de una pagina con pregunta estatica
 //router.get('/quizes/answer', quizController.answer); //OLD: Método antiguo de una pagina con pregunta estatica
