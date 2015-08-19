@@ -13,7 +13,7 @@ exports.load = function(req, res, next, quizId) {
 				next(new Error('No existe quizId=' + quizId));
 			}
 		}
-	)
+	).catch(function(error) {next(error);} );
 };
 
 //OLD: Método antiguo de una pagina con pregunta estatica
@@ -59,6 +59,7 @@ exports.answer = function(req, res) {
 };
 
 //GET /quizes
+//Se añade búsqueda de preguntas: El patrón buscado es reemplazado por %, siendo insensible a mayúsculas 
 exports.index = function(req, res) {
 	models.Quiz.findAll().then(
 		function(quizes){
