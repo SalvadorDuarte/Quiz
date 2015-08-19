@@ -61,11 +61,23 @@ exports.answer = function(req, res) {
 //GET /quizes
 //Se añade búsqueda de preguntas: El patrón buscado es reemplazado por %, siendo insensible a mayúsculas 
 exports.index = function(req, res) {
-	models.Quiz.findAll().then(
+	var search;
+	if (req.query.search)
+	{
+		search = '%' + req.query.search.replace(/\s/gi, "%") + '%';
+	}
+	else 
+	{	
+		search = '%'
+	}
+
+	var filtro = {where: ["upper(pregunta) like upper(?)", search], order: 'pregunta ASC'};
+
+	models.Quiz.findAll(filtro).then(
 		function(quizes){
 			res.render('quizes/index', {quizes: quizes, errors: []});	
 		}
-	).catch(function(error){next(error)});
+	).catch(function(error) {next(error);} )
 };
 
 //GET /quizes/new
