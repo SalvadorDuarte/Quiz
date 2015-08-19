@@ -38,6 +38,14 @@ app.use(
 
         //hacer visible req.session en las vistas
         res.locals.session = req.session;
+
+        // Validez de la sesion de 2 min
+        var currentTimestamp = new Date().getTime();
+        if (req.session.user && req.session.lastTimestamp < (currentTimestamp - 2*60*1000)) {
+            delete req.session.user;
+        }
+        req.session.lastTimestamp = currentTimestamp;
+
         next();
     }
 );
